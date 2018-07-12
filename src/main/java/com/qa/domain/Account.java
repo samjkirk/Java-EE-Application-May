@@ -34,8 +34,6 @@ public class Account {
 		setAccountNumber(accountNumber);
 	}
 
-	private Account() { }
-	
 	public void setId(Long id) { 
 		this.id = id;
 	}

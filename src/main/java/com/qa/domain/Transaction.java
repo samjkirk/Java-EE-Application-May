@@ -25,8 +25,6 @@ public class Transaction {
 		this.name = name;
 	}
 	
-	private Transaction() {}
-	
 	public Long getId() {
 		return id;
 	}

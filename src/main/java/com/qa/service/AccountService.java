@@ -16,7 +16,7 @@ public class AccountService {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 	
-	public List<Account> findAllMovies() {
+	public List<Account> findAllAccounts() {
 		TypedQuery<Account> query = em.createQuery("SELECT a FROM Account a ORDER BY a.id DESC", Account.class);
 		return query.getResultList();
 	}
