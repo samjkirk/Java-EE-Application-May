@@ -33,19 +33,15 @@ public class AccountService {
 	
 	@Transactional(TxType.REQUIRED)
 	public Account update(Account account, String firstName, String lastName, int accountNumber) {
-		em.getTransaction().begin();
 		account.setFirstName(firstName);
 		account.setLastName(lastName);
 		account.setAccountNumber(accountNumber);
 		em.refresh(account);
-		em.getTransaction().commit();
 		return account;
 	}
 	
 	@Transactional(TxType.REQUIRED)
 	public void delete(Account account) {
-		em.getTransaction().begin();
 		em.remove(account);
-		em.getTransaction().commit();
 	}
 }
