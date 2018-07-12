@@ -1,4 +1,4 @@
-package com.qa.persistence;
+package com.qa.domain;
 
 import java.util.List;
 
@@ -34,8 +34,6 @@ public class Account {
 		setAccountNumber(accountNumber);
 	}
 
-	private Account() { }
-	
 	public void setId(Long id) { 
 		this.id = id;
 	}

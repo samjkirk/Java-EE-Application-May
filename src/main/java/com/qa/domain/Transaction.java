@@ -1,4 +1,4 @@
-package com.qa.persistence;
+package com.qa.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +24,6 @@ public class Transaction {
 		this.id = id;
 		this.name = name;
 	}
-	
-	private Transaction() {}
 	
 	public Long getId() {
 		return id;
