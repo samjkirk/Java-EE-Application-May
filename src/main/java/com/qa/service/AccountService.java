@@ -1,5 +1,6 @@
 package com.qa.service;
 
+import com.qa.constants.*;
 import com.qa.domain.Account;
 
 import java.util.List;
@@ -13,11 +14,11 @@ import javax.transaction.Transactional.TxType;
 @Transactional(TxType.SUPPORTS)
 public class AccountService {
 
-	@PersistenceContext(unitName = "primary")
+	@PersistenceContext(unitName = Constants.UNIT_NAME)
 	private EntityManager em;
 	
 	public List<Account> findAllAccounts() {
-		TypedQuery<Account> query = em.createQuery("SELECT a FROM Account a ORDER BY a.id DESC", Account.class);
+		TypedQuery<Account> query = em.createQuery(Constants.FIND_ALL_QUERY, Account.class);
 		return query.getResultList();
 	}
 	
