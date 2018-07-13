@@ -1,6 +1,5 @@
-package com.qa.domain;
+package domain;
 
-import com.qa.constants.*;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
+
+import constants.*;
 
 @Entity
 public class Account {
@@ -25,14 +26,16 @@ public class Account {
 	@Column(name = Constants.ACCOUNT_NUMBER)
 	@Size (min = 6, max = 6)
 	private int accountNumber;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = Constants.ACCOUNT, fetch = FetchType.LAZY)
-	private List<Transaction> transactions;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = Constants.ACCOUNT, fetch = FetchType.LAZY)
+//	private List<Transaction> transactions;
 	
 	public Account(String firstName, String lastName, int accountNumber) {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setAccountNumber(accountNumber);
 	}
+	
+	private Account() {}
 
 	public void setId(Long id) { 
 		this.id = id;
@@ -48,6 +51,9 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 	
+	public Long getId() {
+		return id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -61,7 +67,7 @@ public class Account {
 	@Override
 	public String toString() {
 		return "Account Number: " + accountNumber 
-		+ "\nFirst Name: " + firstName 
-		+ "\nLast Name: " + lastName;
+		+ "\n" + "First Name: " + firstName 
+		+ "\n" + "Last Name: " + lastName;
 	}
 }

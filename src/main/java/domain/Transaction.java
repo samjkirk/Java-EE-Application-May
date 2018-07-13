@@ -1,4 +1,4 @@
-package com.qa.domain;
+package domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.qa.constants.Constants;
+import constants.Constants;
 
 @Entity
 public class Transaction {
@@ -26,6 +26,8 @@ public class Transaction {
 		this.id = id;
 		this.name = name;
 	}
+	
+	private Transaction() {}
 	
 	public Long getId() {
 		return id;
