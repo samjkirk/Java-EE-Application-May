@@ -8,16 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.qa.constants.Constants;
+
 @Entity
 public class Transaction {
 	
 	@Id @GeneratedValue (strategy=GenerationType.AUTO)
-	@Column (name = "TRANSACTIONID")
+	@Column (name = Constants.TRANSACTION_ID)
 	private Long id;
 	@Column(length = 50)
 	private String name;
 	@ManyToOne
-	@JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCOUNTID")
+	@JoinColumn(name = Constants.ACCOUNT_ID, referencedColumnName = Constants.ACCOUNT_ID)
 	private Account account;
 	
 	public Transaction(Long id, String name) {

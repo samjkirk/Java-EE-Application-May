@@ -2,9 +2,7 @@ package com.qa.service;
 
 import com.qa.constants.*;
 import com.qa.domain.Account;
-
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

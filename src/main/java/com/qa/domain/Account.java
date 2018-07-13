@@ -1,7 +1,7 @@
 package com.qa.domain;
 
+import com.qa.constants.*;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,16 +16,16 @@ import javax.validation.constraints.Size;
 public class Account {
 	
 	@Id @GeneratedValue (strategy=GenerationType.AUTO)
-	@Column (name = "ACCOUNTID")
+	@Column (name = Constants.ACCOUNT_ID)
 	private Long id;
-	@Column (length = 40, name = "First_Name")
+	@Column (length = 40, name = Constants.FIRST_NAME)
 	private String firstName;
-	@Column (length = 40, name = "Last_Name")
+	@Column (length = 40, name = Constants.LAST_NAME)
 	private String lastName;
-	@Column(name = "Acc_Number")
+	@Column(name = Constants.ACCOUNT_NUMBER)
 	@Size (min = 6, max = 6)
 	private int accountNumber;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = Constants.ACCOUNT, fetch = FetchType.LAZY)
 	private List<Transaction> transactions;
 	
 	public Account(String firstName, String lastName, int accountNumber) {
@@ -61,7 +61,7 @@ public class Account {
 	@Override
 	public String toString() {
 		return "Account Number: " + accountNumber 
-		+ "\n" + "First Name: " + firstName 
-		+ "\n" + "Last Name: " + lastName;
+		+ "\nFirst Name: " + firstName 
+		+ "\nLast Name: " + lastName;
 	}
 }
