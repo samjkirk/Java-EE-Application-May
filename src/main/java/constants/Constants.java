@@ -13,4 +13,5 @@ public class Constants {
 	public static final String ACCOUNT_DELETED = "{\"message\": \"account deleted\"}";
 	public static final String ACCOUNT_UPDATED = "{\"message\": \"account updated\"}";
 	public static final String QUERY1 = "SELECT a FROM Account a";
+	public static final String BANNED_ACCOUNT_MESSAGE = "{\"message\": \"this account is blocked\"}";
 }

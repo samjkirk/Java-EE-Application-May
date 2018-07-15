@@ -2,31 +2,46 @@ package business;
 
 import javax.inject.Inject;
 
+import constants.Constants;
+import domain.Account;
 import repositories.iAccountRepository;
 
 public class AccService implements iAccountsService {
 	
 	@Inject
 	private iAccountRepository repo;
+	
+	@Inject
+	private iAccountsChecker accountChecker;
 
-	@Override
 	public String findAllAccounts() {
 		return repo.findAllAccounts();
 	}
 
-	@Override
 	public String create(String account) {
-		return repo.create(account);
+		if(!accountChecker.checkAccountNumber(account)) {
+			return Constants.BANNED_ACCOUNT_MESSAGE;
+		} else {
+			return repo.create(account);
+		}
 	}
 
-	@Override
-	public String update(Long id, String account) {
-		return repo.update(id, account);
+	public String updateAccount(long id, String account) {
+		if(!accountChecker.checkAccountNumber(account)) {
+			return Constants.BANNED_ACCOUNT_MESSAGE;
+		}
+		else {
+			return repo.updateAccount(id, account);
+		}
+		
 	}
 
-	@Override
-	public String delete(Long id) {
+	public String delete(long id) {
 		return repo.delete(id);
+	}
+
+	public Account findAccount(long id) {
+		return repo.findAccount(id);
 	}
 
 }

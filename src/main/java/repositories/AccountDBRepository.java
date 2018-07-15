@@ -2,20 +2,19 @@ package repositories;
 
 import domain.Account;
 import util.JSONUtil;
-
-import java.util.Collection;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
-import javax.persistence.Query;
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
+import javax.enterprise.inject.Default;
 
 import constants.*;
 
+@Transactional(REQUIRED)
 @Default
-@Transactional(TxType.SUPPORTS)
 public class AccountDBRepository implements iAccountRepository {
 
 	@PersistenceContext(unitName = Constants.UNIT_NAME)
@@ -23,46 +22,39 @@ public class AccountDBRepository implements iAccountRepository {
 	
 	@Inject
 	private JSONUtil util;
-	
-	@Override
-	public String findAllAccounts() {
-		Query getAccountsQuery = em.createQuery(Constants.QUERY1);
-		@SuppressWarnings("unchecked")
-		Collection<Account> accountsList = (Collection<Account>) getAccountsQuery.getResultList();
-		return util.getJSONForObject(accountsList);
-	}
-	
-	public Account findAccount(Long id) {
-		return em.find(Account.class, id);
-	}
-	
-	@Override
-	@Transactional(TxType.REQUIRED)
+
 	public String create(String account) {
 		Account result = util.getObjectForJSON(account, Account.class);
 		em.persist(result);
 		return Constants.ACCOUNT_ADDED;
 	}
 	
-	@Override
-	@Transactional(TxType.REQUIRED)
-	public String update(Long id, String account) {
+	public String updateAccount(long id, String account) {
 		Account update = util.getObjectForJSON(account, Account.class);
 		Account original = findAccount(id);
 		if (account != null) {
 			original = update;
+			original.setId(id);
 			em.merge(original);
 		}
 		return Constants.ACCOUNT_UPDATED;
 	}
 	
-	@Override
-	@Transactional(TxType.REQUIRED)
-	public String delete(Long id) {
+	public String delete(long id) {
 		Account delete = findAccount(id);
 		if (delete != null) {
 			em.remove(delete);
 		}
 		return Constants.ACCOUNT_DELETED;
+	}
+	
+	@Transactional(SUPPORTS)
+	public String findAllAccounts() {
+		return util.getJSONForObject(em.createQuery(Constants.QUERY1).getResultList());
+	}
+	
+	@Transactional(SUPPORTS)
+	public Account findAccount(long id) {
+		return em.find(Account.class, id);
 	}
 }

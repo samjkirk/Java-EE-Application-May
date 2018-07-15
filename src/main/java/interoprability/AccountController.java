@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import business.AccService;
+import domain.Account;
 
 @Path("/account")
 public class AccountController {
@@ -24,6 +25,13 @@ public class AccountController {
 		return service.findAllAccounts();
 	}
 	
+	@Path("/json/{id}")
+	@GET
+	@Produces({ "application/json" })
+	public Account findAccount(@PathParam("id") long id) {
+		return service.findAccount(id);
+	}
+	
 	@Path("/json")
 	@POST
 	@Produces({ "application/json " })
@@ -34,14 +42,14 @@ public class AccountController {
 	@Path("/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String update(@PathParam("id") Long id, String account) {
-		return service.update(id, account);
+	public String update(@PathParam("id") long id, String account) {
+		return service.updateAccount(id, account);
 	}
 	
 	@Path("/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String delete(@PathParam("id") Long id) {
+	public String delete(@PathParam("id") long id) {
 		return service.delete(id);
 	}
 }
