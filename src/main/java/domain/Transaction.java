@@ -1,7 +1,6 @@
 package domain;
 
 import javax.persistence.*;
-
 import constants.Constants;
 
 @Entity
