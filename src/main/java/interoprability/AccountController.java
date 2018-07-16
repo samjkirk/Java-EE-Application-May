@@ -8,48 +8,48 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-
 import business.AccService;
+import constants.Constants;
 import domain.Account;
 
-@Path("/account")
+@Path(Constants.ACCOUNT_PATH)
 public class AccountController {
 	
 	@Inject
 	private AccService service;
 	
-	@Path("/json")
+	@Path(Constants.JSON_PATH)
 	@GET
-	@Produces({ "application/json" })
+	@Produces({ Constants.PRODUCES })
 	public String findAllAccounts() {
 		return service.findAllAccounts();
 	}
 	
-	@Path("/json/{id}")
+	@Path(Constants.JSON_PATH_WITH_ID)
 	@GET
-	@Produces({ "application/json" })
-	public Account findAccount(@PathParam("id") long id) {
+	@Produces({ Constants.PRODUCES })
+	public Account findAccount(@PathParam(Constants.ID) long id) {
 		return service.findAccount(id);
 	}
 	
-	@Path("/json")
+	@Path(Constants.JSON_PATH)
 	@POST
-	@Produces({ "application/json " })
+	@Produces({ Constants.PRODUCES })
 	public String create(String account) {
 		return service.create(account);
 	}
 	
-	@Path("/json/{id}")
+	@Path(Constants.JSON_PATH_WITH_ID)
 	@PUT
-	@Produces({ "application/json" })
-	public String update(@PathParam("id") long id, String account) {
+	@Produces({ Constants.PRODUCES })
+	public String update(@PathParam(Constants.ID) long id, String account) {
 		return service.updateAccount(id, account);
 	}
 	
-	@Path("/json/{id}")
+	@Path(Constants.JSON_PATH_WITH_ID)
 	@DELETE
-	@Produces({ "application/json" })
-	public String delete(@PathParam("id") long id) {
+	@Produces({ Constants.PRODUCES })
+	public String delete(@PathParam(Constants.ID) long id) {
 		return service.delete(id);
 	}
 }

@@ -3,7 +3,9 @@ package interoprability;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("rest")
+import constants.Constants;
+
+@ApplicationPath(Constants.REST)
 public class JAXActivation extends Application {
 
 }
