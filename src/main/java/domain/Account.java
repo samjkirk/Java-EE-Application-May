@@ -1,10 +1,14 @@
 package domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import constants.*;
 
@@ -20,14 +24,18 @@ public class Account {
 	private String lastName;
 	@Column(name = Constants.ACCOUNT_NUMBER, length = 6)
 	private String accountNumber;
+	@OneToMany(mappedBy = Constants.ACCOUNT, cascade= CascadeType.ALL, orphanRemoval=true)
+	private List<Transaction> transactions;
 	
 	public Account(String firstName, String lastName, String accountNumber) {
-		setFirstName(firstName);
-		setLastName(lastName);
-		setAccountNumber(accountNumber);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.accountNumber = accountNumber;
 	}
 	
-	private Account() {}
+	public Account() {
+		
+	}
 
 	public void setId(long id) { 
 		this.id = id;
@@ -54,6 +62,12 @@ public class Account {
 	}
 	public String getAccountNumber() {
 		return accountNumber;
+	}
+	public void addTransaction(Transaction transaction) {
+		transactions.add(transaction);
+	}
+	public void removeTransaction(Transaction transaction) {
+		transactions.remove(transaction);
 	}
 	
 	@Override

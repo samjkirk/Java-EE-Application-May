@@ -2,8 +2,9 @@ package constants;
 
 public class Constants {
 	public static final String UNIT_NAME = "primary";
-	public static final String ACCOUNT_ID = "ACCOUNTID";
-	public static final String TRANSACTION_ID = "TRANSACTIONID";
+	public static final String ACCOUNT_ID = "ACCOUNT_ID";
+	public static final String TRANSACTION_ID = "TRANSACTION_ID";
+	public static final String TRANSACTION_NAME = "TRANSACTION_NAME";
 	public static final String FIRST_NAME = "First_Name";
 	public static final String LAST_NAME = "Last_Name";
 	public static final String ID = "id";

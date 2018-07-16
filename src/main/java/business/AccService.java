@@ -29,8 +29,7 @@ public class AccService implements iAccountsService {
 	public String updateAccount(long id, String account) {
 		if(!accountChecker.checkAccountNumber(account)) {
 			return Constants.BANNED_ACCOUNT_MESSAGE;
-		}
-		else {
+		} else {
 			return repo.updateAccount(id, account);
 		}
 		
