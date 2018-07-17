@@ -13,7 +13,7 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import javax.enterprise.inject.Default;
 
-@Transactional(REQUIRED)
+@Transactional(SUPPORTS)
 @Default
 public class AccountDBRepository implements iAccountRepository {
 
@@ -23,12 +23,14 @@ public class AccountDBRepository implements iAccountRepository {
 	@Inject
 	private JSONUtil util;
 
+	@Transactional(REQUIRED)
 	public String create(String account) {
 		Account result = util.getObjectForJSON(account, Account.class);
 		em.persist(result);
 		return Constants.ACCOUNT_ADDED;
 	}
 	
+	@Transactional(REQUIRED)
 	public String updateAccount(long id, String account) {
 		Account update = util.getObjectForJSON(account, Account.class);
 		Account original = findAccount(id);
@@ -40,6 +42,7 @@ public class AccountDBRepository implements iAccountRepository {
 		return Constants.ACCOUNT_UPDATED;
 	}
 	
+	@Transactional(REQUIRED)
 	public String delete(long id) {
 		Account delete = findAccount(id);
 		if (delete != null) {
@@ -48,12 +51,10 @@ public class AccountDBRepository implements iAccountRepository {
 		return Constants.ACCOUNT_DELETED;
 	}
 	
-	@Transactional(SUPPORTS)
 	public String findAllAccounts() {
 		return util.getJSONForObject(em.createQuery(Constants.QUERY1).getResultList());
 	}
 	
-	@Transactional(SUPPORTS)
 	public Account findAccount(long id) {
 		return em.find(Account.class, id);
 	}

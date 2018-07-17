@@ -2,6 +2,7 @@ package com.qa.persistence.domain;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.qa.constants.Constants;
@@ -13,8 +14,10 @@ public class Account {
 	@Column (name = Constants.ACCOUNT_ID)
 	private long id;
 	@Column (name = Constants.FIRST_NAME)
-	private String firstName;
+	@Pattern (regexp = "^[a-zA-Z]{2,30}", message = "Name must be between 2 and 30 english characters")
+	private String firstName; 
 	@Column (name = Constants.LAST_NAME)
+	@Pattern (regexp = "^[a-zA-Z]{2,30}", message = "Name must be between 2 and 30 english characters")
 	private String lastName;
 	@Column(name = Constants.ACCOUNT_NUMBER, length = 6)
 	@Size(min = 6, max = 6)
