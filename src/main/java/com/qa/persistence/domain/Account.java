@@ -1,8 +1,10 @@
-package domain;
+package com.qa.persistence.domain;
 
 import java.util.List;
 import javax.persistence.*;
-import constants.Constants;
+import javax.validation.constraints.Size;
+
+import com.qa.constants.Constants;
 
 @Entity
 public class Account {
@@ -10,19 +12,22 @@ public class Account {
 	@Id @GeneratedValue (strategy=GenerationType.IDENTITY)
 	@Column (name = Constants.ACCOUNT_ID)
 	private long id;
-	@Column (length = 40, name = Constants.FIRST_NAME)
+	@Column (name = Constants.FIRST_NAME)
 	private String firstName;
-	@Column (length = 40, name = Constants.LAST_NAME)
+	@Column (name = Constants.LAST_NAME)
 	private String lastName;
 	@Column(name = Constants.ACCOUNT_NUMBER, length = 6)
+	@Size(min = 6, max = 6)
 	private String accountNumber;
-	@OneToMany(mappedBy = Constants.ACCOUNT, cascade= CascadeType.ALL, orphanRemoval=true)
+	@JoinColumn(name = Constants.ACCOUNT_ID)
+	@OneToMany(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
 	private List<Transaction> transactions;
 	
-	public Account(String firstName, String lastName, String accountNumber) {
+	public Account(String firstName, String lastName, String accountNumber, List<Transaction> transactions) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.accountNumber = accountNumber;
+		this.transactions = transactions;
 	}
 	
 	public Account() {
@@ -55,6 +60,7 @@ public class Account {
 	public String getAccountNumber() {
 		return accountNumber;
 	}
+	
 	public void addTransaction(Transaction transaction) {
 		transactions.add(transaction);
 	}

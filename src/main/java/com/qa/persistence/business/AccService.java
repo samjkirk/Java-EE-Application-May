@@ -1,9 +1,10 @@
-package business;
+package com.qa.persistence.business;
 
 import javax.inject.Inject;
-import constants.Constants;
-import domain.Account;
-import repositories.iAccountRepository;
+
+import com.qa.constants.Constants;
+import com.qa.persistence.domain.Account;
+import com.qa.repository.iAccountRepository;
 
 public class AccService implements iAccountsService {
 	

@@ -1,12 +1,13 @@
-package repositories;
+package com.qa.repository;
 
 import java.util.*;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
-import constants.Constants;
-import domain.Account;
-import util.JSONUtil;
+
+import com.qa.constants.Constants;
+import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
 @ApplicationScoped
 @Alternative

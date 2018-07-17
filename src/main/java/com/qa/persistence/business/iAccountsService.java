@@ -1,8 +1,8 @@
-package repositories;
+package com.qa.persistence.business;
 
-import domain.Account;
+import com.qa.persistence.domain.Account;
 
-public interface iAccountRepository {
+public interface iAccountsService {
 	String findAllAccounts();
 	String create(String account);
 	String updateAccount(long id, String account);

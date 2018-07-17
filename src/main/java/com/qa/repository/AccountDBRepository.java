@@ -1,16 +1,17 @@
-package repositories;
+package com.qa.repository;
 
-import domain.Account;
-import util.JSONUtil;
 import javax.inject.Inject;
 import javax.persistence.*;
 import javax.transaction.Transactional;
+
+import com.qa.constants.*;
+import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
+
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import javax.enterprise.inject.Default;
-
-import constants.*;
 
 @Transactional(REQUIRED)
 @Default

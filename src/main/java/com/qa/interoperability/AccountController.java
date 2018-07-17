@@ -1,10 +1,11 @@
-package interoprability;
+package com.qa.interoperability;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import business.AccService;
-import constants.Constants;
-import domain.Account;
+
+import com.qa.constants.Constants;
+import com.qa.persistence.business.AccService;
+import com.qa.persistence.domain.Account;
 
 @Path(Constants.ACCOUNT_PATH)
 public class AccountController {

@@ -1,8 +1,9 @@
-package business;
+package com.qa.persistence.business;
 
-import domain.Account;
 import javax.inject.Inject;
-import util.JSONUtil;
+
+import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
 public class AccountsChecker implements iAccountsChecker {
 	

@@ -1,28 +1,23 @@
-package domain;
+package com.qa.persistence.domain;
 
 import javax.persistence.*;
-import constants.Constants;
+
+import com.qa.constants.Constants;
 
 @Entity
 public class Transaction {
 	
-	@Id @GeneratedValue (strategy=GenerationType.AUTO)
+	@Id @GeneratedValue (strategy=GenerationType.IDENTITY)
 	@Column (name = Constants.TRANSACTION_ID)
 	private long id;
-	
 	@Column (length = 40, name = Constants.TRANSACTION_NAME)
 	private String transactionName;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = Constants.ACCOUNT_ID)
-	private Account account; 
-	
-	public Transaction(long id, String transactionName) {
-		this.id = id; 
+	public Transaction(String transactionName) {
 		this.transactionName = transactionName;
 	}
 	
-	private Transaction() {
+	public Transaction() {
 		
 	}
 
@@ -42,11 +37,4 @@ public class Transaction {
 		this.transactionName = transactionName;
 	}
 
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 }
