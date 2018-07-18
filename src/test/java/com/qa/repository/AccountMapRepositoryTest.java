@@ -1,8 +1,6 @@
 package com.qa.repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,12 +8,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountMapRepositoryTest {
+	
 	private static final String MOCK_DATA_ARRAY = "[{\"id\":0,\"firstName\":\"John\",\"lastName\":\"Doe\",\"accountNumber\":\"123456\"}]";
 
 	private static final String MOCK_OBJECT = "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"accountNumber\":\"123456\"}";
