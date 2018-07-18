@@ -43,7 +43,7 @@ public class AccountDBRepository implements iAccountRepository {
 		Account original = findAccount(id);
 		if (account != null) {
 			original = update;
-			original.setId(id);
+			original.setId(id); 
 			em.merge(original);
 		}
 		return Constants.ACCOUNT_UPDATED;
@@ -67,5 +67,13 @@ public class AccountDBRepository implements iAccountRepository {
 	public Account findAccount(long id) {
 		LOGGER.info("In AccountDBRepository findAccount");
 		return em.find(Account.class, id);
+	}
+
+	public void setManager(EntityManager manager) {
+		this.em = manager;
+	}
+	
+	public void setUtil(JSONUtil util) {
+		this.util = util;
 	}
 }

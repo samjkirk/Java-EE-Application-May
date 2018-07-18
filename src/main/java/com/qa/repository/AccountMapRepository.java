@@ -4,6 +4,7 @@ import java.util.*;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
@@ -65,4 +66,10 @@ public class AccountMapRepository implements iAccountRepository {
 		accountsList.remove(id);
 		return Constants.ACCOUNT_DELETED;
 	}
+
+	public void setUtil(JSONUtil util) {
+		this.util = util;
+	}
+
+	
 }

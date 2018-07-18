@@ -2,12 +2,9 @@ package com.qa.interoperability;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
-
 import org.apache.log4j.Logger;
-
 import com.qa.constants.Constants;
 import com.qa.persistence.business.AccService;
-import com.qa.persistence.business.iAccountsChecker;
 import com.qa.persistence.domain.Account;
 
 @Path(Constants.ACCOUNT_PATH)
@@ -55,5 +52,9 @@ public class AccountController {
 	public String delete(@PathParam(Constants.ID) long id) {
 		LOGGER.info("In AccountController delete");
 		return service.delete(id);
+	}
+	
+	public void setService(AccService service) {
+		this.service = service; 
 	}
 }
